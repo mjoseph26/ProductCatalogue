@@ -53,17 +53,32 @@ function createBtn(category) {
 // Handle input
 // Argument: a string representation of a category, used to compare against categories of products
 function filterProducts(value) {
-    const filteredProducts = data.products.filter((product) => {
-      return product.category.includes(value);
-    });
-  
-    displayProducts(filteredProducts);
+    if (value === "all") {
+        displayProducts(data.products);
+        return;
+      }
+    
+      const filteredProducts = data.products.filter((product) => {
+        if (value.split(" ").length > 1) {
+          return product.category.includes(value.split(" ").join("-"));
+        } else {
+          return product.category.includes(value);
+        }
+      });
+    
+      displayProducts(filteredProducts);
   }
 
 // Grab element from the DOM
 // Argument: a string representation of the element's ID
 searchInput.addEventListener('input', (e)=>{
     filterProducts(e.target.value);
+});
+
+document.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('category-btn')){
+        filterProducts(e.target.textContent.toLowerCase());
+    }
 });
 
 function getElement(identifier) {
@@ -80,11 +95,13 @@ function getElement(identifier) {
 // Argument: An array of products
 function displayCategories(products) {
     const parsedCategories = parseCategories(products);
-    btnContainer.appendChild(createBtn('All'))
+  
+    btnContainer.appendChild(createBtn("All"));
+  
     parsedCategories.forEach((category) => {
-        btnContainer.appendChild(createBtn(category));
+      btnContainer.appendChild(createBtn(category));
     });
-}
+  }
 
 // Gather all categories from products data
 // Argument: An array of products
@@ -110,11 +127,9 @@ function parseCategories(products) {
   
       return category.charAt(0).toUpperCase() + category.substr(1);
     });
-  
-    console.log(categories);
-  }
 
-parseCategories(data.products);
+    return categories;
+  }
 
 // Display initial products list and category buttons
 // No arguments
