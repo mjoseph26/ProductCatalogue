@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Search Bar</title>
+  </head>
+  <body>
+    <header>
+      <h1>Products Filter</h1>
+      <form>
+        <label class="sr-only" for="search">Search Products</label>
+        <!-- Select input element in JS -->
+        <input
+          type="text"
+          id="search"
+          placeholder="Search products by category"
+        />
+      </form>
+      <h2>Categories</h2>
+      <div class="category-btn-wrapper">
+        <!-- Select btn-container in JS -->
+        <menu id="btn-container"> </menu>
+      </div>
+    </header>
+    <!-- Select productslist-container in JS -->
+    <section id="productslist-container"></section>
+    <script src="./script.js"></script>
+  </body>
+</html>
